@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: openapi-swaggerui-quickstart-jvm
+  name: openapi-swaggerui-quickstart-jvm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openapi-swaggerui-quickstart-jvm
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      labels:
+        app: openapi-swaggerui-quickstart-jvm
+    spec:
+      containers:
+      - name: openapi-swaggerui-quickstart-jvm
+        image: quay.io/gedasilv/openapi-swaggerui-quickstart-jvm
+        imagePullPolicy: IfNotPresent
